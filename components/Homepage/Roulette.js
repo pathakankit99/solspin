@@ -41,36 +41,69 @@ const data = [
 
 
 const Roulette = () => {
+  const [on, seton] = useState(false);
+  const [deg, setdeg] = useState(0);
+  const spin = { true: "spin", false: "none" };
+  // const rotate = { true: `rotate(${deg}deg)`, false: "rotate(0deg)" };
+  var style = {
+    animationName: spin[on],
+    transform: `rotate(${deg}deg)`,
+  };
+  useEffect(() => {
+    if (deg < 0 || deg > 360) {
+      setdeg(0);
+    }
+  }, [deg])
     return (
-      <div className="overflow-hidden text-white h-80vh relative flex justify-center items-end">
-        <ul className="circle overflow-hidden">
-          {data?.map((item) => {
-            if (item.id > 19)
+      <section>
+        spin  
+        <input
+          className='mx-3'
+          placeholder="Deg"
+          type="text"
+          value={deg}
+          onChange={(e) => setdeg(e.target.value)}
+        />
+        degrees
+        
+        <div className="overflow-hidden text-white py-16 relative flex justify-center">
+          <ul style={style} className="circle overflow-hidden">
+            {data?.map((item) => {
+              if (item.id > 19)
+                return (
+                  <li key={item.id} className="pie  overflow-hidden">
+                    {/* <div className="text">{item.option}</div> */}
+                    <div className="nft  overflow-hidden">
+                      <img src={"/images/nft/" + item.id + ".png"} />
+                    </div>
+                  </li>
+                );
               return (
                 <li key={item.id} className="pie  overflow-hidden">
                   {/* <div className="text">{item.option}</div> */}
                   <div className="nft  overflow-hidden">
-                    <img src={"/images/nft/" + item.id + ".png"} />
+                    <img src={"/images/nft/" + item.id + ".jpeg"} />
                   </div>
                 </li>
               );
-            return (
-              <li key={item.id} className="pie  overflow-hidden">
-                {/* <div className="text">{item.option}</div> */}
-                <div className="nft  overflow-hidden">
-                  <img src={"/images/nft/" + item.id + ".jpeg"} />
-                </div>
-              </li>
-            );
-          })}
-          <div className="inner-circle">
-            <div className="pointer  custom-gradient"></div>
-          </div>
-        </ul>
+            })}
+            <div className="inner-circle">
+              <div className="pointer custom-gradient"></div>
+            </div>
+          </ul>
 
-        <div className="arrow custom-gradient"></div>
-        {/* <div className="arrow-container"></div> */}
-      </div>
+          <div className="arrow custom-gradient"></div>
+          {/* <div className="arrow-container"></div> */}
+        </div>
+        <div className="center">
+          <button className="btn" onClick={() => seton(!on)}>
+            Spin
+          </button>
+        </div>
+        <div className="center">
+          <button className="btn">Connect wallet</button>
+        </div>
+      </section>
     );
 };
 

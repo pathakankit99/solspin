@@ -1,7 +1,9 @@
 import Roulette from "./Roulette";
+import Recent from "./Recent";
 const Index = () => {
     return (<div>
-        <Roulette/>
+        <Roulette />
+        <Recent/>
     </div> );
 }
  

@@ -1,7 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+$layout-breakpoint-sm:640px;
+$layout-breakpoint-md:768px;
+$layout-breakpoint-lg:1024px;
+$layout-breakpoint-xl:1280px;
+$layout-breakpoint-2xl:1536px;
 html,
 body {
   /* background-repeat: repeat-x; */
@@ -51,6 +55,13 @@ a {
   ) !important;
 }
 
+.btn{
+  @apply m-2 uppercase px-4 py-2 text-center flex bg-brand_black text-brand_white rounded-xl font-bold tracking-wider border border-white;
+}
+.center{
+  @apply flex justify-center items-center;
+}
+
 /* .wallet-adapter-button-trigger {
   background-color: rgba(213, 63, 232) !important;
 } */
@@ -74,8 +85,8 @@ background: linear-gradient(0deg, rgba(6,24,33,1) 0%, rgba(17,59,62,1) 100%);
 }
 /* //spinner */
 .circle{
-  width: 30vw;
-  height: 30vw;
+  width: 80vw;
+  height: 80vw;
   overflow: hidden;
   position: relative;
   border-radius: 50%;
@@ -98,49 +109,13 @@ background: linear-gradient(0deg, rgba(6,24,33,1) 0%, rgba(17,59,62,1) 100%);
 }
 
 $deg: 0;
-// .circle li:first-child{
-//   transform: rotate(0deg) skewY(-60deg);
-// }
+
 @for $i from 1 through 36 {
   .circle li:nth-child(#{$i}){
     transform: rotate(#{$deg}deg) skewY(-80deg);
   }
   $deg: $deg+10;
 }
-// .circle li:nth-child(2){
-//   transform: rotate(30deg) skewY(-60deg);
-// }
-// .circle li:nth-child(3){
-//   transform: rotate(60deg) skewY(-60deg);
-// }
-// .circle li:nth-child(4){
-//   transform: rotate(90deg) skewY(-60deg);
-// }
-// .circle li:nth-child(5){
-//   transform: rotate(120deg) skewY(-60deg);
-// }
-// .circle li:nth-child(6){
-//   transform: rotate(150deg) skewY(-60deg);
-// }
-
-// .circle li:nth-child(7){
-//   transform: rotate(180deg) skewY(-60deg);
-// }
-// .circle li:nth-child(8){
-//   transform: rotate(210deg) skewY(-60deg);
-// }
-// .circle li:nth-child(9){
-//   transform: rotate(240deg) skewY(-60deg);
-// }
-// .circle li:nth-child(10){
-//   transform: rotate(270deg) skewY(-60deg);
-// }
-// .circle li:nth-child(11){
-//   transform: rotate(300deg) skewY(-60deg);
-// }
-// .circle li:nth-child(12){
-//   transform: rotate(330deg) skewY(-60deg);
-// }
 
 .text{
   position: absolute;
@@ -194,28 +169,15 @@ $deg: 0;
   position: relative;
   z-index: 500;
 }
-.inner-circle .pointer .arrow-container{
-  // min-width: 100%;
-  // min-height: 100%;
-  // left:0;
-  // right:0;
-  // top:0;
-  // bottom:0;
-  // display: flex;
-  // top:0;
-  // bottom:0;
-  // justify-content: center;
-  // position: absolute;
-}
 .arrow{
   position: absolute;
   top:0;
-  margin-top: 5%;
+  margin-top: 4%;
   z-index: 100;  
-  min-width: 5vw;
-  min-height: 5vw;
-  max-width: 5vw;
-  max-height: 5vw;
+  min-width: 10vw;
+  min-height: 10vw;
+  max-width: 10vw;
+  max-height: 10vw;
   padding: 10px;
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
@@ -229,7 +191,72 @@ $deg: 0;
 background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
 }
 
+.card-container{
+ @apply bg-blue-600 w-full lg:w-8/12 p-6 rounded-2xl overflow-y-scroll h-90vh flex flex-col items-center;
+}
+
+.card{
+  @apply border-b border-black w-full flex flex-col items-center justify-between py-2 font-medium tracking-wider capitalize;
+}
+.card .info .wallet_id{
+  @apply text-green-500;
+}
+.card .info .nft_name{
+  @apply text-yellow-500;
+}
+
 @keyframes spin {
   from {transform: rotate(0deg);}
   to {transform: rotate(360deg);}
+}
+
+@media (min-width: $layout-breakpoint-sm) {
+ .arrow{
+  margin-top: 0%;
+  min-width: 10vw;
+  min-height: 10vw;
+  max-width: 10vw;
+  max-height: 10vw;
+}
+}
+
+@media (min-width: $layout-breakpoint-md) {
+  .circle{
+  width: 50vw;
+  height: 50vw;
+  
+}
+ .arrow{
+   margin-top: 3%;
+  min-width: 7vw;
+  min-height: 7vw;
+  max-width: 7vw;
+  max-height: 7vw;
+}
+}
+
+@media (min-width: $layout-breakpoint-lg) {
+
+ .arrow{
+   margin-top: 0%;
+  min-width: 7vw;
+  min-height: 7vw;
+  max-width: 7vw;
+  max-height: 7vw;
+}
+}
+
+
+@media (min-width: $layout-breakpoint-xl) {
+  .circle{
+  width: 30vw;
+  height: 30vw;
+}
+ .arrow{
+   margin-top: 0%;
+  min-width: 5vw;
+  min-height: 5vw;
+  max-width: 5vw;
+  max-height: 5vw;
+}
 }
